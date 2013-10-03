@@ -1,13 +1,24 @@
 class openswan::config(
- $debug_level = undef,
- $nat_t,
- $opportunistic_encryption,
- $dumpdir,
- $plutoopts = undef,
- $plutostderrlog,
- $protostack,
- $virtual_private
+  $ensure           = 'present',
+  $debug_level      = undef,
+  $nat_t,
+  $opportunistic_encryption,
+  $dumpdir,
+  $plutoopts        = undef,
+  $plutostderrlog,
+  $protostack,
+  $uniqueid,
+  $virtual_private
 ) {
+
+  if !($ensure in ['present', 'absent']) {
+    fail("ensure = ${ensure} must be either 'present' or 'absent'")
+  }
+
+  $ensure_dir = $ensure ? {
+    'present' => 'directory',
+    default   => $ensure,
+  }
 
   File {
     owner => 'root',
@@ -16,27 +27,27 @@ class openswan::config(
   }
 
   file { '/etc/ipsec.conf':
-    ensure  => file,
+    ensure  => $ensure,
     content => template('openswan/ipsec.conf.erb'),
   }
   file { '/etc/ipsec.secrets':
-    ensure => file,
+    ensure => $ensure,
     mode   => '0600',
     source => 'puppet:///modules/openswan/ipsec.secrets',
   }
   file { '/etc/ipsec.d':
-    ensure => directory,
+    ensure => $ensure_dir,
     mode   => '0755',
   }
   file { '/etc/ipsec.d/connections':
-    ensure => directory,
+    ensure => $ensure_dir,
     mode   => '0755',
   }
   file { '/etc/ipsec.d/secrets':
-    ensure => directory,
+    ensure => $ensure_dir,
     mode   => '0600',
   }
   file { '/etc/ipsec.d/connections/index.conf':
-    ensure => file,
+    ensure => $ensure,
   }
 }

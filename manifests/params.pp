@@ -21,9 +21,16 @@ class openswan::params {
   # Enable Opportunistic Encryption
   $opportunistic_encryption = 'off'
 
+  # Enable uniqueids
+  $uniqueids = 'yes'
+
   case $::operatingsystem {
     debian,ubuntu: {
       $package_list = ['libgmp3c2', 'openswan', 'lsof']
+      $service_name = 'ipsec'
+    }
+    redhat,centos: {
+      $package_list = ['openswan']
       $service_name = 'ipsec'
     }
     default: { }

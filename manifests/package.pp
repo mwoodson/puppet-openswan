@@ -1,5 +1,7 @@
-class openswan::package {
+class openswan::package(
+  $ensure           = 'present'
+){
   package { $openswan::params::package_list:
-    ensure => present,
+    ensure => $ensure,
   }
 }
