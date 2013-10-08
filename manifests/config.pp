@@ -1,14 +1,14 @@
 class openswan::config(
-  $ensure           = 'present',
-  $debug_level      = undef,
-  $nat_t,
-  $opportunistic_encryption,
-  $dumpdir,
-  $plutoopts        = undef,
-  $plutostderrlog,
-  $protostack,
-  $uniqueid,
-  $virtual_private
+  $ensure                       = 'present',
+  $debug_level                  = undef,
+  $nat_t                        = undef,
+  $opportunistic_encryption     = undef,
+  $dumpdir                      = undef,
+  $plutoopts                    = undef,
+  $plutostderrlog               = undef,
+  $protostack                   = undef,
+  $uniqueid                     = undef,
+  $virtual_private              = undef,
 ) {
 
   if !($ensure in ['present', 'absent']) {

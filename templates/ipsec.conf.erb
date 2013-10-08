@@ -11,12 +11,18 @@ config setup
 <% if @plutoopts -%>
         plutoopts="<%= @plutoopts %>"
 <% end -%>
+<% if @dumpdir -%>
         dumpdir="<%= @dumpdir %>"
+<% end -%>
+<% if @plutostderrlog -%>
         plutostderrlog="<%= @plutostderrlog %>"
+<% end -%>
         nat_traversal=<%= @nat_t %>
         virtual_private=<%= @virtual_private %>
         oe=<%= @opportunistic_encryption %>
         protostack=<%= @protostack %>
+<% if @uniqueids -%>
         uniqueids=<%= @uniqueids %>
+<% end -%>
 
 include /etc/ipsec.d/connections/*.conf

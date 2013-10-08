@@ -6,14 +6,14 @@ class openswan::params {
 
   # Extra parameters for Pluto
   $plutoopts = undef
-  $plutostderrlog = '/var/log/pluto.log'
-  $dumpdir = '/var/run/pluto'
+  $plutostderrlog = undef
+  $dumpdir = undef
 
   # Exclude networks used on server side by adding %v4:!a.b.c.0/24
   $virtual_private = '%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12'
 
   # Enable NAT Transversal (NAT-T)
-  $nat_t = true
+  $nat_t = 'yes'
 
   # IPSec Protocol Stack. auto will try netkey, then klips then mast
   $protostack = 'auto'
@@ -21,8 +21,8 @@ class openswan::params {
   # Enable Opportunistic Encryption
   $opportunistic_encryption = 'off'
 
-  # Enable uniqueids
-  $uniqueids = 'yes'
+  # Support uniqueids
+  $uniqueids = undef
 
   case $::operatingsystem {
     debian,ubuntu: {

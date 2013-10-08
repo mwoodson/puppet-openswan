@@ -1,4 +1,5 @@
 define openswan::connection(
+  $aggrmode          = undef,
   $auto              = undef,
   $authby            = undef,
   $esp               = undef,

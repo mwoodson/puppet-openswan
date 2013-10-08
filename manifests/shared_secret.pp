@@ -9,10 +9,12 @@ define openswan::shared_secret (
     mode  => '0600',
   }
 
+  $host_line = join($hosts, ' ')
+
   file { "/etc/ipsec.d/secrets/${name}.secret":
     ensure  => file,
     mode    => '0600',
-    content => "${hosts} : PSK \"${psk}\"\n",
+    content => "${host_line} : PSK \"${psk}\"\n",
     notify  => Class['openswan::service'],
   }
 }

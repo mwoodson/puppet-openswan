@@ -7,7 +7,7 @@ class openswan (
   $plutoopts                = $openswan::params::plutoopts,
   $plutostderrlog           = $openswan::params::plutostderrlog,
   $protostack               = $openswan::params::protostack,
-  $uniqueid                 = $openswan::params::uniqueid,
+  $uniqueids                = $openswan::params::uniqueids,
   $virtual_private          = $openswan::params::virtual_private
 ) inherits openswan::params {
 
